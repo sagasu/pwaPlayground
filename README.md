@@ -5,6 +5,6 @@ Using Material Design libriary
 https://getmdl.io/started/
 
 <code>
-npm run browserify  
+npm run browserify  <br/>
 npm run start  
 </code>
