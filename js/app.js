@@ -4,4 +4,4 @@ var systemJS = require('systemjs');
 
 var carService = require('./carService.js');
 
-carService.loadMoreRequest();
+carService().loadMoreRequest();

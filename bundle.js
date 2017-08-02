@@ -5,28 +5,26 @@ var systemJS = require('systemjs');
 
 var carService = require('./carService.js');
 
-carService.loadMoreRequest();
+carService().loadMoreRequest();
 },{"./carService.js":2,"es6-promises":6,"systemjs":9,"whatwg-fetch":11}],2:[function(require,module,exports){
-define([], function(){
+module.exports = function(){
     var apiUrlPath = 'https://bstavroulakis.com/pluralsight/courses/progressive-web-apps/service/';
     var apiUrlLatest = apiUrlPath + 'latest-deals.php';
     
     
     function loadMoreRequest(){
-        fatch(apiUrlLatest)
+        fetch(apiUrlLatest)
         .then(function(response){
             return response.json();
         }).then(function(data){
             console.log(data);
         })
-    }
+    };
     
-    return{
+    return {
         loadMoreRequest: loadMoreRequest
     }
-});
-
-
+};
 },{}],3:[function(require,module,exports){
 'use strict'
 
