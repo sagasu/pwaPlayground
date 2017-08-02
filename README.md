@@ -1,9 +1,10 @@
 # pwaPlayground
 Progressive web apps playground  
 
-Using Material Design libriary
+Using Material Design libriary  
 https://getmdl.io/started/
 
 <code>
-npm run start
+npm run browserify  
+npm run start  
 </code>
