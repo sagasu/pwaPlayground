@@ -4,7 +4,10 @@
   "description": "progressive web application playground",
   "main": "index.js",
   "dependencies": {
-    "http-server": "^0.10.0"
+    "es6-promises": "^1.0.10",
+    "http-server": "^0.10.0",
+    "systemjs": "^0.20.17",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "http-server": "^0.10.0"
