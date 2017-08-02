@@ -37,11 +37,17 @@
             </main>
         </div>
         <script id="car-card" type="text/template">
-        <div class="mdl-car mdl-cell mdl-cell--4-col mdl-shadow--6dp" style="background-image: url('{{image}}')">
-            <div class="mdl-card__title">
-                <span class="mdl-card__title-text">{{title}} (${{price}})<span>
+            <div class="mdl-car mdl-cell mdl-cell--4-col mdl-shadow--6dp" style="background-image: url('{{image}}')">
+                <div class="mdl-card__title">
+                    <span class="mdl-card__title-text">{{title}} (${{price}})<span>
+                </div>
             </div>
-        </div>
+        </script>
+        
+        <script src="bundle.js"></script>
+        
+        <script>
+            System.import('./js/app.js');
         </script>
     </body>
 </html>
