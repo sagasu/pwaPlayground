@@ -1,6 +1,7 @@
 var promise = require('es6-promises');
 var fetch = require('whatwg-fetch');
 var systemJS = require('systemjs');
+var localforage = require('localforage');
 
 var carService = require('./carService.js');
 
