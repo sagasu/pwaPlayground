@@ -12,6 +12,7 @@ module.exports = function(){
     }
     
     function appendCars(cars){
+        document.getElementById('first-load').innerHTML = "";
         var cardHTML = "";
         
         for (var i = 0; i < cars.length; i++) {
