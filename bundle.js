@@ -5,6 +5,12 @@ var systemJS = require('systemjs');
 
 var carService = require('./carService.js');
 
+window.pageEvents = {
+    loadCarPage: function(carId){
+        carService().loadCarPage(carId);
+    }
+}
+
 carService().loadMoreRequest();
 },{"./carService.js":2,"es6-promises":7,"systemjs":10,"whatwg-fetch":12}],2:[function(require,module,exports){
 module.exports = function(){
@@ -12,7 +18,7 @@ module.exports = function(){
     
     var apiUrlPath = 'https://bstavroulakis.com/pluralsight/courses/progressive-web-apps/service/';
     var apiUrlLatest = apiUrlPath + 'latest-deals.php';
-    
+    var apiUrlCar = apiUrlPath + 'car.php?carId=';
     
     function loadMoreRequest(){
         fetch(apiUrlLatest)
@@ -23,8 +29,22 @@ module.exports = function(){
         })
     };
     
+    function loadCarPage(carId){
+        fetch(apiUrlCar + carId)
+            .then(function(response){
+                return response.text();
+            }).then(function(data){
+                var el = document.createElement(null);
+                el.innerHTML = data;
+                document.body.insertAdjacentElement('beforeend', el);
+            }).catch(function(){
+                alert('cant retrive a page');
+            })
+    };
+    
     return {
-        loadMoreRequest: loadMoreRequest
+        loadMoreRequest: loadMoreRequest,
+        loadCarPage: loadCarPage
     }
 };
 },{"./template.js":3}],3:[function(require,module,exports){
@@ -36,6 +56,7 @@ module.exports = function(){
         
         template = template.replace('{{title}}', title);
         template = template.replace('{{image}}', car.image);
+        template = template.replace('{{details-id}}', car.details_id);
         template = template.replace('{{price}}', car.price);
         
         return template;

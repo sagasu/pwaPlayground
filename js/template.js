@@ -6,6 +6,7 @@ module.exports = function(){
         
         template = template.replace('{{title}}', title);
         template = template.replace('{{image}}', car.image);
+        template = template.replace('{{details-id}}', car.details_id);
         template = template.replace('{{price}}', car.price);
         
         return template;
