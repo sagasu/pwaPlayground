@@ -6,8 +6,10 @@ var systemJS = require('systemjs');
 var carService = require('./carService.js');
 
 carService().loadMoreRequest();
-},{"./carService.js":2,"es6-promises":6,"systemjs":9,"whatwg-fetch":11}],2:[function(require,module,exports){
+},{"./carService.js":2,"es6-promises":7,"systemjs":10,"whatwg-fetch":12}],2:[function(require,module,exports){
 module.exports = function(){
+    var template = require('./template.js');
+    
     var apiUrlPath = 'https://bstavroulakis.com/pluralsight/courses/progressive-web-apps/service/';
     var apiUrlLatest = apiUrlPath + 'latest-deals.php';
     
@@ -17,7 +19,7 @@ module.exports = function(){
         .then(function(response){
             return response.json();
         }).then(function(data){
-            console.log(data);
+            template().appendCars(data.cars);
         })
     };
     
@@ -25,7 +27,40 @@ module.exports = function(){
         loadMoreRequest: loadMoreRequest
     }
 };
-},{}],3:[function(require,module,exports){
+},{"./template.js":3}],3:[function(require,module,exports){
+module.exports = function(){
+    
+    function generateCarCards(car){
+        var template = document.querySelector('#car-card').innerHTML;
+        var title = car.brand + ' ' + car.model + ' ' + car.year;
+        
+        template = template.replace('{{title}}', title);
+        template = template.replace('{{image}}', car.image);
+        template = template.replace('{{price}}', car.price);
+        
+        return template;
+    }
+    
+    function appendCars(cars){
+        var cardHTML = "";
+        
+        for (var i = 0; i < cars.length; i++) {
+            cardHTML += generateCarCards(cars[i].value);
+            
+        }
+        document.querySelector('.mdl-grid').insertAdjacentHTML('beforeend', cardHTML);
+        
+        // Force Redraw for IE 
+        document.querySelector('.mdl-layout__content').style.display = 'none';
+        document.querySelector('.mdl-layout__content').style.display = 'inline-block'; 
+    }
+    
+    
+    return {
+        appendCars: appendCars
+    }
+};
+},{}],4:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -141,9 +176,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],4:[function(require,module,exports){
-
 },{}],5:[function(require,module,exports){
+
+},{}],6:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -1851,7 +1886,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":3,"ieee754":7}],6:[function(require,module,exports){
+},{"base64-js":4,"ieee754":8}],7:[function(require,module,exports){
 /**
  * Promise polyfill v1.0.10
  * requires setImmediate
@@ -2163,7 +2198,7 @@ function numberIsNaN (obj) {
 
 }(this));
 
-},{"timers":10}],7:[function(require,module,exports){
+},{"timers":11}],8:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -2249,7 +2284,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -2435,7 +2470,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename){
 /*
  * SystemJS v0.20.17 Dev
@@ -6439,7 +6474,7 @@ if (typeof module !== 'undefined' && module.exports)
 
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/node_modules\\systemjs\\dist\\system.src.js")
-},{"_process":8,"buffer":5,"fs":4}],10:[function(require,module,exports){
+},{"_process":9,"buffer":6,"fs":5}],11:[function(require,module,exports){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
 var slice = Array.prototype.slice;
@@ -6516,7 +6551,7 @@ exports.setImmediate = typeof setImmediate === "function" ? setImmediate : funct
 exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
   delete immediateIds[id];
 };
-},{"process/browser.js":8}],11:[function(require,module,exports){
+},{"process/browser.js":9}],12:[function(require,module,exports){
 (function(self) {
   'use strict';
 

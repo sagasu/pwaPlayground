@@ -15,7 +15,7 @@ module.exports = function(){
         var cardHTML = "";
         
         for (var i = 0; i < cars.length; i++) {
-            cardHTML += generateCarCard(cars[i].value);
+            cardHTML += generateCarCards(cars[i].value);
             
         }
         document.querySelector('.mdl-grid').insertAdjacentHTML('beforeend', cardHTML);

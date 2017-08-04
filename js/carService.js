@@ -10,7 +10,7 @@ module.exports = function(){
         .then(function(response){
             return response.json();
         }).then(function(data){
-            template.appendCars(data.cars);
+            template().appendCars(data.cars);
         })
     };
     
