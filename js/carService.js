@@ -1,4 +1,6 @@
 module.exports = function(){
+    var template = require('./template.js');
+    
     var apiUrlPath = 'https://bstavroulakis.com/pluralsight/courses/progressive-web-apps/service/';
     var apiUrlLatest = apiUrlPath + 'latest-deals.php';
     
@@ -8,7 +10,7 @@ module.exports = function(){
         .then(function(response){
             return response.json();
         }).then(function(data){
-            console.log(data);
+            template.appendCars(data.cars);
         })
     };
     
